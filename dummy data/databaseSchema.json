@@ -1,0 +1,22 @@
+{
+  "sid":{
+    "facebook":{
+      "facebookId":"malith.shan",
+      "overallRating":89,
+      "ratedFriends":["pupudu","helani","tharanga"],
+    },
+    "linkedIn":{
+      "linkedInId":"shan-mahanama/77/2a2/741",
+      "ratedConnecttions":[]
+    },
+    "gmail":{
+      "address":"shan.11@cse.mrt.ac.lk",
+      "ratedContacts":["pubudu.dodan@gmail.com","chethiya.11@cse.mrt.ac.lk"]
+    },
+    "trustedSources":{
+      "dialogCustomer":"false",
+      "mobitelCustomer":"false",
+      "moodleAccount":"true"
+    }
+  }
+}
