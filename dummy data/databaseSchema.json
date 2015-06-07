@@ -7,11 +7,13 @@
     },
     "linkedIn":{
       "linkedInId":"shan-mahanama/77/2a2/741",
-      "ratedConnecttions":[]
+      "ratedConnecttions":[],
+      "overallRating":91
     },
     "gmail":{
       "address":"shan.11@cse.mrt.ac.lk",
-      "ratedContacts":["pubudu.dodan@gmail.com","chethiya.11@cse.mrt.ac.lk"]
+      "ratedContacts":["pubudu.dodan@gmail.com","chethiya.11@cse.mrt.ac.lk"],
+      "overallRating":97
     },
     "trustedSources":{
       "dialogCustomer":"false",
