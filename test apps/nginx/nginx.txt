@@ -1,3 +1,11 @@
+1) sudo apt-get update
+
+2) sudo apt-get install nginx
+
+3) sudo vi /etc/nginx/sites-available/default
+
+4) 
+
 server {
     listen 80;
 
@@ -12,3 +20,5 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
+
+5) sudo service nginx restart
