@@ -1,0 +1,24 @@
+1) sudo apt-get update
+
+2) sudo apt-get install nginx
+
+3) sudo vi /etc/nginx/sites-available/default
+
+4) 
+
+server {
+    listen 80;
+
+    server_name id.projects.mrt.ac.lk;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+5) sudo service nginx restart
