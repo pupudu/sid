@@ -167,8 +167,10 @@ module.exports = function(passport) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.facebook.token) {
                             user.facebook.token = token;
-                            user.facebook.name  = profile.name.displayName;
+                            user.facebook.name  = profile.displayName;
                             user.facebook.email = (profile.emails[0].value || '').toLowerCase();
+
+                            console.log("USER: "+user);
 
                             user.save(function(err) {
                                 if (err)
@@ -185,7 +187,7 @@ module.exports = function(passport) {
 
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
-                        newUser.facebook.name  = profile.name.displayName;
+                        newUser.facebook.name  = profile.displayName;
                         newUser.facebook.email = (profile.emails[0].value || '').toLowerCase();
 
                         newUser.save(function(err) {
@@ -203,7 +205,7 @@ module.exports = function(passport) {
 
                 user.facebook.id    = profile.id;
                 user.facebook.token = token;
-                user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                user.facebook.name  = profile.displayName ;
                 user.facebook.email = (profile.emails[0].value || '').toLowerCase();
 
                 user.save(function(err) {
