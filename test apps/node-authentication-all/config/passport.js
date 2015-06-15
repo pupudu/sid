@@ -3,6 +3,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var LinkedInStrategy = require('passport-linkedin').Strategy;
 
 // load up the user model
 var User       = require('../app/models/user');
@@ -373,6 +374,53 @@ module.exports = function(passport) {
 
             }
 
+        });
+
+    }));
+
+    passport.use(new LinkedInStrategy({
+      consumerKey   : configAuth.linkedinAuth.consumerKey,
+      consumerSecret: configAuth.linkedinAuth.consumerSecret,
+      callbackURL   : configAuth.linkedinAuth.callbackURL,
+      profileFields: ['id', 'first-name', 'last-name', 'email-address']
+        },
+        function(token, refreshToken, profile, done) {
+
+        // asynchronous
+        process.nextTick(function() {
+
+            // find the user in the database based on their linked id
+            User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
+
+                // if there is an error, stop everything and return that
+                // ie an error connecting to the database
+                if (err)
+                    return done(err);
+
+                // if the user is found, then log them in
+                if (user) {
+                    return done(null, user); // user found, return that user
+                } else {
+                    // if there is no user found with that linkedin id, create them
+                    var newUser            = new User();
+
+                    // set all of the facebook information in our user model
+                    newUser.linkedin.id    = profile.id; // set the users linkedin id
+                    newUser.linkedin.token = token; // we will save the token that linkedin provides to the user
+                    newUser.linkedin.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    newUser.linkedin.email = (profile.emails[0].value || '').toLowerCase(); // linkedin can return multiple emails so we'll take the first
+                    //console.log(profile);
+                    // save our user to the database
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+
+                        // if successful, return the new user
+                        return done(null, newUser);
+                    });
+                }
+
+            });
         });
 
     }));

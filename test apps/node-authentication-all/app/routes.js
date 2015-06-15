@@ -90,6 +90,20 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+    //linkedin accounts -----------------------------------
+    app.get('/auth/linkedin', passport.authenticate('linkedin'));
+
+    app.get('/auth/linkedin/callback',
+        passport.authenticate('linkedin', { failureRedirect: '/' }),
+        function(req, res) {
+          // Successful authentication, redirect home.
+          res.redirect('/profile');
+        });
+
+
+
+            // ====================================================
+
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
@@ -140,6 +154,16 @@ module.exports = function(app, passport) {
                 successRedirect : '/profile',
                 failureRedirect : '/'
             }));
+
+        app.get('/connect/linkedin', passport.authorize('linkedin', { scope : ['profile', 'email'] }));
+
+        // the callback after google has authorized the user
+        app.get('/connect/linkedin/callback',
+            passport.authorize('linkedin', {
+                successRedirect : '/profile',
+                failureRedirect : '/'
+            }));
+
 
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
