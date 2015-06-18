@@ -155,7 +155,7 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
-        app.get('/connect/linkedin', passport.authorize('linkedin', { scope : ['profile', 'email'] }));
+        app.get('/connect/linkedin', passport.authorize('linkedin', { res : ['r_basicprofile', 'r_fullprofile', 'r_emailaddress'] }));
 
         // the callback after google has authorized the user
         app.get('/connect/linkedin/callback',
