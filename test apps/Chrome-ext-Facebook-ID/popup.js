@@ -15,16 +15,24 @@ document.addEventListener('DOMContentLoaded', function() {
       i.value = tab.url;
 	  if(i.value.includes("facebook")){
 		
-		var x='document.body.style.backgroundColor="red";document.getElementsByClassName("_2dpb")[0].innerHTML;';
 		/*chrome.tabs.duplicate(tab.id);*/
 		chrome.tabs.executeScript(tab.id,{
-			code:x;
+			code:'document.body.style.backgroundColor="red";document.getElementsByClassName("_2dpb")[0].innerHTML;'
 		  },function(d){
 			alert(d);
 		  });
 		  /*chrome.tabs.executeScript(tab.id,function(){
 			 document.body.style.backgroundColor="red"
 		  });*/
+		  
+		  
+		  chrome.tabs.executeScript(tab.id,{
+			/*code:'document.getElementsByClassName("_2dpb")[0].innerHTML="dodans";'*/
+			file:'inject.js'
+		  },function(){
+			
+		  });
+		  
 	  }else{
 		alert("Incorrect Page");
 	  }
