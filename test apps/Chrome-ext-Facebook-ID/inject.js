@@ -10,6 +10,6 @@ if(!isPage){
   var name = document.getElementById('fb-timeline-cover-name').innerText;
   console.log("Name: "+name);
 }else{
-  var pageName = document.getElementsByClassName('_58gi _5rqs')[0].innerText;
+  var pageName = document.getElementsByClassName('_58gi _5rqs')[0].innerText; //replaced '_58gi _5rqs' with '_58gi' , first one only for verified pages
   console.log("Page Name: "+pageName);
 }

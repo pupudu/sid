@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       i.type = 'hidden';
       i.name = 'url';
       i.value = tab.url;
-	  if(i.value.includes("facebook")){
+	  if(i.value.includes("facebook.com")){
 
 		/*chrome.tabs.duplicate(tab.id);*/
 
