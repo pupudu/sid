@@ -4,16 +4,20 @@ console.log('My Username: ' + myUsername);
 
 var isPage = document.getElementsByClassName("_58gj fsxxl fwn fcw").length > 0;
 var isGroup = (document.getElementsByClassName('_55pe')[0].innerText =="Joined");
+var isProfile;
+try{
+    isProfile = (document.getElementById('fb-timeline-cover-name').innerText.length > 0);
+}catch(err){}
 
 console.log("Is a page: "+isPage);
 if(!isGroup){
-if(!isPage){
-  var name = document.getElementById('fb-timeline-cover-name').innerText;
-  console.log("Name: "+name);
-}else{
-  var pageName = document.getElementsByClassName('_58gi _5rqs')[0].innerText; //replaced '_58gi _5rqs' with '_58gi' , first one only for verified pages
-  console.log("Page Name: "+pageName);
-}
+	if(isProfile){
+	  var name = document.getElementById('fb-timeline-cover-name').innerText;
+	  console.log("Name: "+name);
+	}else if(isPage){
+	  var pageName = document.getElementsByClassName('_58gi _5rqs')[0].innerText; //replaced '_58gi _5rqs' with '_58gi' , first one only for verified pages
+	  console.log("Page Name: "+pageName);
+	}
 }
 
 if(isGroup){	//testing adding element to group name
@@ -23,7 +27,6 @@ if(isGroup){	//testing adding element to group name
 	console.log('not a group');
 }
 
-var isProfile = (document.getElementById('fb-timeline-cover-name').innerText.length > 0);
 if(isProfile){
 	document.getElementById('fb-timeline-cover-name').innerHTML = 
 		document.getElementById('fb-timeline-cover-name').innerHTML +
